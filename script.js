@@ -48,22 +48,25 @@ function check() {
   const value = inputElement.value;
   const index = guessWord.indexOf(value);
   console.log(secretWord.innerHTML);
-
-  if (index > -1) {
-    let newSecretWord = secretWord.innerText.split(" ");
-    newSecretWord[index] = value;
-    secretWord.innerText = newSecretWord.join(" ");
-    if (secretWord.innerText.indexOf("_") == -1) {
-      let winOrLoose = document.getElementById("winOrLoose");
-      winOrLoose.innerHTML = "you win";
-      winOrLoose.style.background = "green";
-    }
+  if (value == "") {
+    alert("write some word");
   } else {
-    if (lifeCount.innerHTML > 0) {
-      lifeCount.innerHTML -= 1;
+    if (index > -1) {
+      let newSecretWord = secretWord.innerText.split(" ");
+      newSecretWord[index] = value;
+      secretWord.innerText = newSecretWord.join(" ");
+      if (secretWord.innerText.indexOf("_") == -1) {
+        let winOrLoose = document.getElementById("winOrLoose");
+        winOrLoose.innerHTML = "you win";
+        winOrLoose.style.background = "green";
+      }
     } else {
-      let winOrLoose = document.getElementById("winOrLoose");
-      winOrLoose.innerHTML = "you loose";
+      if (lifeCount.innerHTML > 0) {
+        lifeCount.innerHTML -= 1;
+      } else {
+        let winOrLoose = document.getElementById("winOrLoose");
+        winOrLoose.innerHTML = "you loose";
+      }
     }
   }
 
